@@ -1,0 +1,369 @@
+:root {
+  --primary: #b388ff;
+  --surface: #1a1a1a;
+  --background: #121212;
+  --text: #ffffff;
+  --message-bg: #2a2a2a;
+  --user-message: #4a148c;
+  --neon-glow: 0 0 10px #b388ff;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(179, 136, 255, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 20px);
+  border: 1px solid var(--primary);
+  position: relative;
+}
+
+.chat-header {
+  background: linear-gradient(45deg, #4a148c, #7c43bd);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 2px solid var(--primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: var(--neon-glow);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(var(--neon-glow));
+  animation: pulseGlow 2s infinite;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: linear-gradient(to bottom, rgba(179, 136, 255, 0.05), rgba(179, 136, 255, 0.02));
+  padding-bottom: 80px;
+  margin-top: 104px;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  max-width: 85%;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-out;
+  border: 1px solid rgba(179, 136, 255, 0.2);
+}
+
+.message a {
+  color: var(--primary);
+  text-decoration: none;
+  display: block;
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+.user-message {
+  background: var(--user-message);
+  margin-left: auto;
+  box-shadow: var(--neon-glow);
+}
+
+.bot-message {
+  background: var(--message-bg);
+}
+
+.chat-input {
+  padding: 12px;
+  gap: 8px;
+  border-top: 1px solid var(--primary);
+  display: flex;
+  background: var(--surface);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  font-size: 16px;
+  min-width: 0;
+  background: var(--message-bg);
+  color: var(--text);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--neon-glow);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  opacity: 0.9;
+}
+
+button:hover {
+  background-color: #945df7;
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.send-icon {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+  opacity: 0.9;
+}
+
+.songs-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.song-card {
+  background: rgba(74, 20, 140, 0.3);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.song-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(179, 136, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+.song-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 4px;
+  padding-right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vinyl-icon {
+  width: 20px;
+  height: 20px;
+  animation: spin 4s linear infinite;
+}
+
+.song-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-start;
+}
+
+.platform-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.platform-link.disabled-link {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+  filter: grayscale(80%);
+}
+
+.youtube-link {
+  color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.spotify-link {
+  color: #1DB954;
+  background: rgba(29, 185, 84, 0.1);
+}
+
+.platform-link:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.platform-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.song-technical {
+  font-size: 0.9rem;
+  color: #b388ff;
+  margin-bottom: 4px;
+}
+
+.song-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.links-list {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(179, 136, 255, 0.2);
+}
+
+.links-list a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  display: block;
+}
+
+.links-list a:hover {
+  text-decoration: underline;
+}
+
+.octopus {
+  transform-origin: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+.tentacles path {
+  stroke-linecap: round;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+  
+  .chat-container {
+    border-radius: 0;
+    height: 100vh;
+  }
+  
+  .chat-input {
+    bottom: 0;
+    padding: 12px 8px;
+  }
+  
+  .message {
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+
+  input {
+    min-height: 44px;
+  }
+
+  button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .chat-messages {
+    margin-top: 92px;
+    padding-bottom: 70px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { filter: drop-shadow(0 0 12px var(--primary)); }
+  50% { filter: drop-shadow(0 0 18px var(--primary)); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

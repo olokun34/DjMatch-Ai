@@ -1,0 +1,106 @@
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DJ Match - AI Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <svg class="avatar" viewBox="0 0 220 220">
+        <!-- Animated Octopus Logo -->
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#b388ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c43bd;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <circle cx="110" cy="110" r="110" fill="#2a2a2a" />
+        <!-- Octopus body -->
+        <path class="octopus" d="
+                    M110 50 
+                    C137.5 50, 154 80, 154 102.7
+                    C154 115, 148.5 126.5, 137.5 132
+                    C132 107, 121 121, 115.5 132
+                    C110 143, 104.5 143, 99 132
+                    C93.5 121, 82.5 107, 77 132
+                    C66 126.5, 60.5 115, 60.5 102.7
+                    C60.5 80, 82.5 50, 110 50
+                    Z" fill="url(#neonGradient)" filter="url(#glow)">
+          <animate attributeName="d" dur="3s" repeatCount="indefinite" values="
+                            M110 50 C137.5 50, 154 80, 154 102.7 C154 115, 148.5 126.5, 137.5 132 C132 107, 121 121, 115.5 132 C110 143, 104.5 143, 99 132 C93.5 121, 82.5 107, 77 132 C66 126.5, 60.5 115, 60.5 102.7 C60.5 80, 82.5 50, 110 50 Z;
+                            M110 55 C137.5 55, 154 85, 154 110 C154 121, 148.5 132, 137.5 137.5 C132 113, 121 126.5, 115.5 137.5 C110 148.5, 104.5 148.5, 99 137.5 C93.5 126.5, 82.5 113, 77 137.5 C66 132, 60.5 121, 60.5 110 C60.5 85, 82.5 55, 110 55 Z;
+                            M110 50 C137.5 50, 154 80, 154 102.7 C154 115, 148.5 126.5, 137.5 132 C132 107, 121 121, 115.5 132 C110 143, 104.5 143, 99 132 C93.5 121, 82.5 107, 77 132 C66 126.5, 60.5 115, 60.5 102.7 C60.5 80, 82.5 50, 110 50 Z" />
+        </path>
+        <!-- Tentacles -->
+        <g class="tentacles" filter="url(#glow)">
+          <path d="M82.5 132 Q71.5 154, 66 176" stroke="url(#neonGradient)" fill="none" stroke-width="8">
+            <animate attributeName="d" dur="2s" repeatCount="indefinite"
+              values="M82.5 132 Q71.5 154, 66 176; M82.5 132 Q77 154, 71.5 176; M82.5 132 Q71.5 154, 66 176" />
+          </path>
+          <path d="M93.5 132 Q93.5 160, 88 181.5" stroke="url(#neonGradient)" fill="none" stroke-width="8">
+            <animate attributeName="d" dur="2.2s" repeatCount="indefinite"
+              values="M93.5 132 Q93.5 160, 88 181.5; M93.5 132 Q99 160, 93.5 181.5; M93.5 132 Q93.5 160, 88 181.5" />
+          </path>
+          <path d="M110 132 Q110 165, 110 190" stroke="url(#neonGradient)" fill="none" stroke-width="8">
+            <animate attributeName="d" dur="1.8s" repeatCount="indefinite"
+              values="M110 132 Q110 165, 110 190; M110 132 Q115.5 165, 115.5 190; M110 132 Q110 165, 110 190" />
+          </path>
+          <path d="M126.5 132 Q132 160, 132 181.5" stroke="url(#neonGradient)" fill="none" stroke-width="8">
+            <animate attributeName="d" dur="2.4s" repeatCount="indefinite"
+              values="M126.5 132 Q132 160, 132 181.5; M126.5 132 Q126.5 160, 126.5 181.5; M126.5 132 Q132 160, 132 181.5" />
+          </path>
+        </g>
+      </svg>
+      <h2>DJ Match</h2>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages will be added dynamically via JavaScript -->
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about DJing, music, or production..." />
+      <button>
+        <svg viewBox="0 0 80 80" class="send-icon">
+          <!-- Reusing the octopus logo -->
+          <defs>
+            <linearGradient id="sendNeonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#b388ff;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#7c43bd;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <circle cx="40" cy="40" r="40" fill="transparent" />
+          <path class="octopus" d="
+                    M40 20 
+                    C50 20, 56 30, 56 38
+                    C56 42, 54 46, 50 48
+                    C48 40, 44 44, 42 48
+                    C40 52, 38 52, 36 48
+                    C34 44, 30 40, 28 48
+                    C24 46, 22 42, 22 38
+                    C22 30, 30 20, 40 20
+                    Z" fill="url(#sendNeonGradient)" filter="url(#glow)">
+            <animate attributeName="d" dur="3s" repeatCount="indefinite" values="
+                            M40 20 C50 20, 56 30, 56 38 C56 42, 54 46, 50 48 C48 40, 44 44, 42 48 C40 52, 38 52, 36 48 C34 44, 30 40, 28 48 C24 46, 22 42, 22 38 C22 30, 30 20, 40 20 Z;
+                            M40 22 C50 22, 56 32, 56 40 C56 44, 54 48, 50 50 C48 42, 44 46, 42 50 C40 54, 38 54, 36 50 C34 46, 30 42, 28 50 C24 48, 22 44, 22 40 C22 32, 30 22, 40 22 Z;
+                            M40 20 C50 20, 56 30, 56 38 C56 42, 54 46, 50 48 C48 40, 44 44, 42 48 C40 52, 38 52, 36 48 C34 44, 30 40, 28 48 C24 46, 22 42, 22 38 C22 30, 30 20, 40 20 Z" />
+          </path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="chat.js"></script>
+</body>
+
+</html>
